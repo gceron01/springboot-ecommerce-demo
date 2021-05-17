@@ -1,1 +1,1 @@
-SpringBoot-ecommerce-demo
+# Spring Boot Web App Example – Thymeleaf

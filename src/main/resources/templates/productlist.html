@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Unicomfacaua Ecommerce Web App Demo</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Unicomfacaua.com</a>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>Unicomfacauca Ecommerce - Product List Page</h1>
+    </div>
+    <div class="starter-template">
+        <h2>Cart</h2>
+    </div>
+    <table>
+        <tr th:each="product : ${order.getProducts()}">
+            <td>
+                <input th:name="id" th:value="${product.id}"/>
+            </td>
+            <td>
+                <input th:name="name" th:value="${product.name}"/>
+            </td>
+            <td>
+                <input th:name="description" th:value="${product.description}"/>
+            </td>
+            <td>
+                <input th:name="price" th:value="${product.price}"/>
+            </td>
+        </tr>
+        <span th:text="'Total = ' + ${order.getTotalValue()}"></span><br/>
+        <a href="/orderconfirmation">Submit Order and Pay</a>
+    </table>
+    <div class="starter-template">
+        <h2>Product List</h2>
+    </div>
+    <table>
+    <tr th:each="product : ${productList}">
+        <td>
+            <input th:name="id" th:value="${product.id}"/>
+        </td>
+        <td>
+            <input th:name="name" th:value="${product.name}"/>
+        </td>
+        <td>
+            <input th:name="description" th:value="${product.description}"/>
+        </td>
+        <td>
+            <input th:name="price" th:value="${product.price}"/>
+        </td>
+        <td>
+            <a th:href="@{/addtocart(id=${product.id})}">Add to Cart</a>
+        </td>
+    </tr>
+    </table>
+
+</main>
+<!-- /.container -->
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
