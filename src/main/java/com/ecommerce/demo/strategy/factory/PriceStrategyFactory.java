@@ -5,7 +5,9 @@ import com.ecommerce.demo.strategy.impl.PriceFileStrategy;
 import com.ecommerce.demo.strategy.PriceStrategy;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -21,13 +23,13 @@ public class PriceStrategyFactory {
     }
 
     private String getProperty(String property){
-        Properties p=new Properties();
-        try {
-            FileReader reader=new FileReader("c:\\Users\\gmcr0\\Documents\\springboot-ecommerce-demo\\src\\main\\resources\\application.properties");
-            p.load(reader);
+        Properties prop = new Properties();
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("application.properties")) {
+            //load a properties file from class path, inside static method
+            prop.load(input);
         }catch (IOException ioe){
             ioe.getStackTrace();
         }
-        return p.getProperty(property);
+        return prop.getProperty(property);
       }
 }
