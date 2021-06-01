@@ -1,17 +1,17 @@
 package com.ecommerce.demo.controller;
 
 import com.ecommerce.demo.facade.EcommerceFacade;
+import com.ecommerce.demo.model.Client;
 import com.ecommerce.demo.model.Order;
 import com.ecommerce.demo.model.Product;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -62,5 +62,17 @@ public class EcommerceController {
     private void clearOrder(){
         order = new Order();
         order.setId(orderIdCounter++);
+    }
+
+    @GetMapping("/register")
+    public String registerClientForm(Model model) {
+        model.addAttribute("client", new Client()) ;
+        return "register"; //view
+    }
+
+    @PostMapping("/register")
+    public String registerClientSubmit(@ModelAttribute Client client, Model model) {
+        model.addAttribute("client", client) ;
+        return "registerConfirmation"; //view
     }
 }
