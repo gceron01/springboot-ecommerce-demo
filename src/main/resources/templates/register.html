@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Form</h1>
+<form action="#" th:action="@{/register}" th:object="${client}" method="post">
+    <p>Id: <input type="text" th:field="*{id}" /></p>
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>LastName: <input type="text" th:field="*{lastname}" /></p>
+    <p><input type="submit" value="Register" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>
